@@ -78,6 +78,7 @@ border-radius:10px;
 <h2>級を選択してください</h2>
 
 <button onclick="startGame('3')">3級</button>
+<button onclick="startGame('4')">4級</button>
 <button onclick="startGame('6')">6級</button>
 <button onclick="startGame('8')">8級</button>
 <button onclick="startGame('10')">10級</button>
@@ -112,6 +113,8 @@ border-radius:10px;
 <div id="resultScreen" class="hidden">
 
 <h2>結果</h2>
+
+<h3 id="resultLevel"></h3>
 
 <div id="resultText"></div>
 
@@ -153,7 +156,6 @@ const questions={
 {word:"九",reading:"きゅう"},
 {word:"九つ",reading:"ここのつ"},
 {word:"十",reading:"じゅう"},
-{word:"十",reading:"とお"},
 
 {word:"人",reading:"ひと"},
 {word:"女",reading:"おんな"},
@@ -331,6 +333,63 @@ const questions={
 
 ],
 
+"4":[
+{word:"握手",reading:"あくしゅ"},
+{word:"扱う",reading:"あつかう"},
+{word:"偉大",reading:"いだい"},
+{word:"違反",reading:"いはん"},
+{word:"陰口",reading:"かげぐち"},
+{word:"隠居",reading:"いんきょ"},
+{word:"鋭い",reading:"するどい"},
+{word:"援助",reading:"えんじょ"},
+{word:"鉛筆",reading:"えんぴつ"},
+{word:"憶測",reading:"おくそく"},
+
+{word:"戒める",reading:"いましめる"},
+{word:"壊れる",reading:"こわれる"},
+{word:"獲得",reading:"かくとく"},
+{word:"勧告",reading:"かんこく"},
+{word:"歓声",reading:"かんせい"},
+{word:"鑑賞",reading:"かんしょう"},
+{word:"祈願",reading:"きがん"},
+{word:"輝く",reading:"かがやく"},
+{word:"戯曲",reading:"ぎきょく"},
+{word:"却下",reading:"きゃっか"},
+
+{word:"拠点",reading:"きょてん"},
+{word:"凶作",reading:"きょうさく"},
+{word:"恐怖",reading:"きょうふ"},
+{word:"響く",reading:"ひびく"},
+{word:"駆ける",reading:"かける"},
+{word:"屈折",reading:"くっせつ"},
+{word:"掘る",reading:"ほる"},
+{word:"継続",reading:"けいぞく"},
+{word:"圏内",reading:"けんない"},
+{word:"遣い",reading:"つかい"},
+
+{word:"枯れる",reading:"かれる"},
+{word:"誇張",reading:"こちょう"},
+{word:"稿料",reading:"こうりょう"},
+{word:"鎖国",reading:"さこく"},
+{word:"惨事",reading:"さんじ"},
+{word:"伺う",reading:"うかがう"},
+{word:"芝生",reading:"しばふ"},
+{word:"釈明",reading:"しゃくめい"},
+{word:"寂しい",reading:"さびしい"},
+{word:"趣味",reading:"しゅみ"},
+
+{word:"襲撃",reading:"しゅうげき"},
+{word:"獣道",reading:"けものみち"},
+{word:"瞬間",reading:"しゅんかん"},
+{word:"巡回",reading:"じゅんかい"},
+{word:"詳しい",reading:"くわしい"},
+{word:"殖える",reading:"ふえる"},
+{word:"震える",reading:"ふるえる"},
+{word:"鮮明",reading:"せんめい"},
+{word:"贈る",reading:"おくる"},
+{word:"濁流",reading:"だくりゅう"}
+],
+
 "3":[{word:"朗詠",reading:"ろうえい"},
 {word:"霊峰",reading:"れいほう"},
 {word:"彫る",reading:"ほる"},
@@ -430,7 +489,7 @@ function showBest(){
 
 let html="<h3>ベスト正答率</h3>";
 
-["10","8","6","3"].forEach(level=>{
+["10","8","6","4","3"].forEach(level=>{
 
 const best=getBest(level);
 
@@ -595,6 +654,12 @@ saveBest(
 currentLevel,
 rate
 );
+
+document.getElementById("resultLevel")
+.innerHTML=
+"挑戦級：漢検" +
+currentLevel +
+"級";
 
 document.getElementById("gameScreen")
 .classList.add("hidden");
